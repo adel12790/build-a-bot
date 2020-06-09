@@ -6,20 +6,29 @@ import RobotBuilder from '../build/RobotBuilder.vue';
 import PartInfo from '../parts/PartInfo.vue';
 import BrowseParts from '../parts/BrowseParts.vue';
 import BrowsePartInfo from '../parts/BrowsePartInfo.vue';
+import SidebarStandard from '../sidebars/SidebarStandard.vue';
+import SidebarBuild from '../sidebars/SidebarBuild.vue';
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: HomePage,
+      components: {
+        default: HomePage,
+        sidebar: SidebarStandard,
+      },
     },
     {
       path: '/build',
       name: 'Build',
-      component: RobotBuilder,
+      components: {
+        default: RobotBuilder,
+        sidebar: SidebarBuild,
+      },
     },
     {
       path: '/parts/browse',
