@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{ part.title}}</h1>
-    <div>{{part.description}}</div>
+    <h1>{{ part.title }}</h1>
+    <div>{{ part.description }}</div>
   </div>
 </template>
 
@@ -10,9 +10,19 @@ import parts from '../data/parts';
 
 export default {
   name: 'PartInfo',
+  props: {
+    partType: { type: String, default: '' },
+    id: {
+      type: [Number, String],
+      default: '',
+      validator(value) {
+        return Number.isInteger(Number(value));
+      },
+    },
+  },
   computed: {
     part() {
-      const { partType, id } = this.$route.params;
+      const { partType, id } = this;
       return parts[partType].find((part) => part.id === +id);
     },
   },
